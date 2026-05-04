@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>RECOIN | Revolusi Sampah Dimulai dari 1 Botol | Install App</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Html5Qrcode Scanner -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00C896;
+            --primary-glow: rgba(0, 200, 150, 0.4);
+            --dark-bg: #0A0F0E;
+            --card-bg: rgba(18, 25, 23, 0.85);
+            --glass-border: rgba(0, 200, 150, 0.25);
+            --text-light: #EFF7F5;
+            --text-dim: #B8D9D0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Custom scroll */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A2A26;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #0A0F0E;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 20px rgba(0,200,150,0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,200,150,0.4);
+            background: #00b07c;
+        }
+        .btn-outline-light {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+        .btn-outline-light:hover {
+            background: rgba(0,200,150,0.15);
+            transform: translateY(-2px);
+        }
+        .btn-scan {
+            background: linear-gradient(135deg, #00C896, #00996e);
+            color: #0A0F0E;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* Tombol Install Aplikasi Baru */
+        .btn-install {
+            background: linear-gradient(135deg, #6B5B95, #483475);
+            color: white;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(107, 91, 149, 0.3);
+        }
+        .btn-install:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #7E6BAB, #5A3F8A);
+            box-shadow: 0 10px 20px rgba(107, 91, 149, 0.4);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            transition: 0.3s;
+            background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 15, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.7rem 2rem;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00C896, #A0FFE0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 5% 4rem;
+            position: relative;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #FFF, #00C896);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stats-hero {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            border-left: 3px solid var(--primary);
+        }
+        .counter {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .machine-animation {
+            background: radial-gradient(circle at 30% 20%, #1B3B33, #0A0F0E);
+            border-radius: 3rem;
+            padding: 2rem;
+            text-align: center;
+            animation: float 5s infinite ease;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Scanner Modal */
+        .scanner-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .scanner-container {
+            background: #111;
+            border-radius: 2rem;
+            padding: 1rem;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 40px rgba(0,200,150,0.3);
+        }
+        #reader {
+            width: 100%;
+            border-radius: 1rem;
+        }
+        .close-scanner {
+            margin-top: 20px;
+            background: rgba(255,80,80,0.9);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .scan-status {
+            color: var(--primary);
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        /* General */
+        section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .impact-card, .product-card, .partner-card, .problem-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+        }
+        .step-flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+        .step {
+            flex: 1;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 1.8rem;
+        }
+        .business-flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            background: #0F1816;
+            border-radius: 3rem;
+            padding: 1.5rem;
+        }
+        .flow-node {
+            background: #00C89620;
+            padding: 0.7rem 1.2rem;
+            border-radius: 2rem;
+        }
+        .cta-area {
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 40%, #10362E, #0A0F0E);
+            border-radius: 4rem;
+            padding: 4rem 2rem;
+        }
+        footer {
+            background: #050807;
+            padding: 3rem 5%;
+            border-top: 1px solid #1f3a34;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 1rem;
+                background: #0A0F0Ee0;
+                backdrop-filter: blur(24px);
+                padding: 1.5rem;
+                border-radius: 2rem;
+                width: 240px;
+                gap: 1rem;
+                z-index: 1001;
+            }
+            .nav-container {
+                justify-content: space-between;
+            }
+            h2 {
+                font-size: 1.9rem;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .step-flow {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 600px) {
+            .btn-group {
+                justify-content: center;
+            }
+        }
+        i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="logo">RECOIN</div>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#hero">Beranda</a>
+            <a href="#masalah">Masalah</a>
+            <a href="#solusi">Solusi</a>
+            <a href="#produk">Produk</a>
+            <a href="#impact">Dampak</a>
+            <a href="#kolaborasi">Kolaborasi</a>
+            <a href="#kontak">Kontak</a>
+            <button class="btn-install" id="installNavBtn" style="padding: 8px 20px; font-size:0.85rem;"><i class="fas fa-download"></i> Install App</button>
+        </div>
+        <button class="theme-toggle" id="darkmodeToggle"><i class="fas fa-moon"></i></button>
+    </div>
+</nav>
+
+<!-- Hero Section - Tombol Gabung Gerakan dan Lihat Solusi telah DIHAPUS -->
+<section id="hero" class="hero">
+    <div class="hero-grid">
+        <div data-aos="fade-up">
+            <div class="badge-title" style="color:#00C896; margin-bottom:10px;"><i class="fas fa-leaf"></i> Gerakan Nasional</div>
+            <h1>Revolusi Sampah Dimulai dari 1 Botol</h1>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">Ubah sampah plastik menjadi nilai ekonomi secara real-time dengan teknologi RECOIN</p>
+            <div class="stats-hero">
+                <div class="stat-item"><span class="counter" id="heroBotol">0</span><br>botol terkumpul</div>
+                <div class="stat-item"><span class="counter" id="heroTransaksi">0</span><br>transaksi</div>
+                <div class="stat-item"><span class="counter" id="heroKarbon">0</span><br>kg CO₂ dikurangi</div>
+            </div>
+            <div class="btn-group">
+                <button class="btn-scan" id="openScannerBtn"><i class="fas fa-camera"></i> Scan Barcode</button>
+                <button class="btn-install" id="installHeroBtn"><i class="fas fa-download"></i> Install Aplikasi RECOIN</button>
+            </div>
+        </div>
+        <div data-aos="fade-left">
+            <div class="machine-animation">
+                <i class="fas fa-recycle" style="font-size: 4rem; color:#00C896;"></i>
+                <i class="fas fa-arrow-right" style="margin: 0 1rem;"></i>
+                <i class="fas fa-coins" style="font-size: 3.5rem; color:#FFD966;"></i>
+                <p style="margin-top: 1rem;">ATM RECOIN · IoT · 3 detik</p>
+                <div style="font-size: 0.8rem;">Botol → Saldo Digital</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Masalah, Solusi, Produk, Cara Kerja, Impact, Data, Model Bisnis, Kolaborasi, Prospek -->
+<section id="masalah" data-aos="fade-right">
+    <h2>Masalah Besar Dimulai dari Hal Kecil</h2>
+    <div class="card-grid">
+        <div class="problem-card"><i class="fas fa-trash-alt fa-2x" style="color: #00C896;"></i><h3>Sampah plastik tidak terkelola</h3><p>77% sampah plastik belum terdaur ulang secara optimal di Indonesia.</p></div>
+        <div class="problem-card"><i class="fas fa-bottle-water fa-2x" style="color: #00C896;"></i><h3>Botol kecil tidak bernilai</h3><p>Pemulung dan masyarakat kecil tidak mendapat insentif dari sedikit botol.</p></div>
+        <div class="problem-card"><i class="fas fa-coins fa-2x" style="color: #00C896;"></i><h3>Tidak ada insentif langsung</h3><p>Butuh waktu lama hingga botol terkumpul banyak baru bisa dijual.</p></div>
+    </div>
+</section>
+
+<section id="solusi" data-aos="fade-up">
+    <h2><i class="fas fa-microchip"></i> Solusi Teknologi untuk Perubahan Nyata</h2>
+    <div class="glass" style="padding: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem;">
+            <div><i class="fas fa-trash-alt fa-2x"></i><br><strong>ATM Sampah IoT</strong><br>Mesin pintar identifikasi otomatis</div>
+            <div><i class="fas fa-bolt fa-2x"></i><br><strong>3 Detik Konversi</strong><br>Botol → Saldo instan</div>
+            <div><i class="fas fa-mobile-alt fa-2x"></i><br><strong>Tanpa Aplikasi</strong><br>Cukup kartu atau scan QR</div>
+            <div><i class="fas fa-chart-line fa-2x"></i><br><strong>Real-Time System</strong><br>Lacak dampak lingkungan langsung</div>
+        </div>
+    </div>
+</section>
+
+<section id="produk" data-aos="zoom-in">
+    <h2>Produk & Layanan RECOIN</h2>
+    <div class="card-grid">
+        <div class="product-card"><i class="fas fa-microchip fa-2x"></i><h3>Mesin RECOIN</h3><p>Mesin otomatis penukar botol plastik jadi saldo digital.</p></div>
+        <div class="product-card"><i class="fas fa-chart-simple fa-2x"></i><h3>Platform Digital</h3><p>Dashboard admin & monitoring data real-time.</p></div>
+        <div class="product-card"><i class="fas fa-store fa-2x"></i><h3>Ekosistem UMKM</h3><p>Saldo digital dapat digunakan berbelanja di ribuan UMKM mitra.</p></div>
+    </div>
+</section>
+
+<section data-aos="fade-left">
+    <h2>Cara Kerja</h2>
+    <div class="step-flow">
+        <div class="step"><i class="fas fa-reply-all fa-2x" style="color:#00C896;"></i><h4>1. Masukkan botol</h4><p>Masukkan ke ATM RECOIN</p></div>
+        <div class="step"><i class="fas fa-qrcode fa-2x" style="color:#00C896;"></i><h4>2. Sistem membaca</h4><p>Sensor IoT identifikasi & hitung</p></div>
+        <div class="step"><i class="fas fa-wallet fa-2x" style="color:#00C896;"></i><h4>3. Saldo masuk</h4><p>Saldo digital realtime</p></div>
+        <div class="step"><i class="fas fa-shopping-bag fa-2x" style="color:#00C896;"></i><h4>4. Digunakan</h4><p>Belanja / tarik tunai</p></div>
+    </div>
+</section>
+
+<section id="impact" data-aos="flip-up">
+    <h2>🌍 Dampak Nyata yang Terukur</h2>
+    <div class="card-grid">
+        <div class="impact-card"><i class="fas fa-chart-line fa-2x"></i><h3>Lingkungan</h3><div class="counter" id="impactBotol">0</div><p>botol terkumpul</p><div class="counter" id="impactKarbon">0</div><p>kg CO₂ berkurang</p></div>
+        <div class="impact-card"><i class="fas fa-hand-holding-heart fa-2x"></i><h3>Sosial</h3><div class="counter" id="impactTransaksi">0</div><p>transaksi hijau</p></div>
+        <div class="impact-card"><i class="fas fa-chart-pie fa-2x"></i><h3>Ekonomi</h3><div class="counter" id="impactOmset">0</div><p>perputaran ekonomi (Rp)</p></div>
+    </div>
+</section>
+
+<section data-aos="fade-right">
+    <h2>Transparansi Data Real-Time</h2>
+    <div class="glass" style="padding: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; text-align:center;">
+            <div>👥 User: <span id="totalUser">0</span></div>
+            <div>⚡ Aktif: <span id="activeUser">0</span></div>
+            <div>🏪 Merchant: <span id="merchantCount">0</span></div>
+        </div>
+        <progress value="70" max="100" style="width:100%; margin-top:1rem; height:10px; border-radius:10px;"></progress>
+    </div>
+</section>
+
+<section data-aos="zoom-in-up">
+    <h2>Model Bisnis & Circular Economy</h2>
+    <div class="business-flow">
+        <div class="flow-node">👤 User</div> <i class="fas fa-arrow-right"></i>
+        <div class="flow-node">🤖 RECOIN</div> <i class="fas fa-arrow-right"></i>
+        <div class="flow-node">🏬 UMKM</div> <i class="fas fa-arrow-right"></i>
+        <div class="flow-node">🏭 Industri Daur Ulang</div>
+    </div>
+    <div class="glass" style="padding: 1.5rem; margin-top: 1.5rem;">
+        <p><strong>Margin Berkelanjutan:</strong> Beli dari masyarakat Rp 2.750/kg → Jual ke industri Rp 7.500/kg.</p>
+    </div>
+</section>
+
+<section id="kolaborasi" data-aos="fade-up">
+    <h2>Kolaborasi untuk Dampak Lebih Besar</h2>
+    <div class="card-grid">
+        <div class="partner-card"><i class="fas fa-building"></i> <h3>Pemerintah</h3><p>Integrasi bank sampah & smart city</p></div>
+        <div class="partner-card"><i class="fas fa-chart-line"></i> <h3>Perusahaan (CSR/ESG)</h3><p>Dukung target SDGs</p></div>
+        <div class="partner-card"><i class="fas fa-hands-helping"></i> <h3>Komunitas</h3><p>Edukasi daur ulang berbasis insentif</p></div>
+    </div>
+</section>
+
+<section id="prospek" data-aos="fade-left">
+    <h2>Masa Depan RECOIN</h2>
+    <div class="card-grid">
+        <div class="impact-card"><i class="fas fa-city"></i> Smart City Integration</div>
+        <div class="impact-card"><i class="fas fa-cloud-sun"></i> Carbon Credit & ESG</div>
+        <div class="impact-card"><i class="fas fa-globe-asia"></i> Ekspansi Nasional 2026</div>
+    </div>
+</section>
+
+<!-- CTA dengan tombol install (tanpa button yang tidak diperlukan) -->
+<section class="cta-area" data-aos="flip-up">
+    <h2 style="color:white;">Jadilah Bagian dari Revolusi Lingkungan</h2>
+    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <button class="btn-primary" onclick="alert('📧 Ajukan kerja sama: tohitmi669@gmail.com')"><i class="fas fa-handshake"></i> Ajukan Kerja Sama</button>
+        <button class="btn-outline-light" onclick="location.href='mailto:tohitmi669@gmail.com'"><i class="fas fa-envelope"></i> Hubungi Kami</button>
+        <button class="btn-scan" id="openScannerBtn2"><i class="fas fa-camera"></i> Scan Barcode</button>
+        <button class="btn-install" id="installCtaBtn"><i class="fas fa-download"></i> Install Aplikasi RECOIN</button>
+    </div>
+</section>
+
+<!-- Footer dengan tombol install -->
+<footer id="kontak">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; align-items: center;">
+        <div><span style="font-size: 1.8rem; font-weight:800;">RECOIN</span><br>Recycle to Coin</div>
+        <div><h4>Kontak Resmi</h4>📧 tohitmi669@gmail.com<br>📞 0895-2453-8835</div>
+        <div>
+            <button class="btn-install" id="installFooterBtn" style="padding: 10px 24px;"><i class="fas fa-download"></i> Install App</button>
+        </div>
+        <div><i class="fab fa-instagram"></i> <i class="fab fa-linkedin"></i> <i class="fab fa-twitter"></i></div>
+    </div>
+    <hr style="margin: 2rem 0; border-color:#1f3a34;">
+    <p style="text-align: center;">&copy; 2025 RECOIN — Teknologi untuk gerakan perubahan berkelanjutan.</p>
+</footer>
+
+<!-- WA Float -->
+<a href="https://wa.me/6289524538835?text=Halo%20RECOIN%2C%20saya%20tertarik%20kolaborasi" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<!-- Scanner Modal -->
+<div id="scannerModal" class="scanner-modal">
+    <div class="scanner-container">
+        <div id="reader"></div>
+        <div class="scan-status" id="scanStatus">Arahkan kamera ke barcode produk RECOIN atau mitra</div>
+        <button class="close-scanner" id="closeScannerBtn"><i class="fas fa-times"></i> Tutup Kamera</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: false, mirror: true });
+
+    // === FUNGSI INSTALL APLIKASI ===
+    const APP_URL = "https://fancy-biscochitos-7258f2.netlify.app/";
+    function redirectToInstall() {
+        window.open(APP_URL, '_blank');
+    }
+    // Pasang event listener ke semua tombol install
+    document.querySelectorAll('#installNavBtn, #installHeroBtn, #installCtaBtn, #installFooterBtn').forEach(btn => {
+        if (btn) btn.addEventListener('click', redirectToInstall);
+    });
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+    });
+
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger) {
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('mobile-open'));
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const id = link.getAttribute('href')?.substring(1);
+            if (id && document.getElementById(id)) {
+                e.preventDefault();
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+                navLinks.classList.remove('mobile-open');
+            }
+        });
+    });
+
+    // Dark mode
+    const toggleBtn = document.getElementById('darkmodeToggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            const icon = toggleBtn.querySelector('i');
+            if (document.body.classList.contains('light')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                document.body.style.backgroundColor = '#f5f9f8';
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                document.body.style.backgroundColor = '#0A0F0E';
+            }
+        });
+    }
+
+    // ========================
+    // FITUR SCAN BARCODE (HTML5 QR CODE)
+    // ========================
+    let html5QrCode = null;
+    const modal = document.getElementById('scannerModal');
+    const openBtns = document.querySelectorAll('#openScannerBtn, #openScannerBtn2');
+    const closeBtn = document.getElementById('closeScannerBtn');
+    const scanStatus = document.getElementById('scanStatus');
+
+    function onScanSuccess(decodedText, decodedResult) {
+        if (html5QrCode) {
+            html5QrCode.stop().then(() => {
+                modal.style.display = 'none';
+            }).catch(err => console.error("Stop error:", err));
+        }
+        let targetUrl = decodedText.trim();
+        if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+            targetUrl = `https://recoin.id/product/${encodeURIComponent(targetUrl)}`;
+        }
+        window.open(targetUrl, '_blank');
+        if (scanStatus) {
+            scanStatus.innerText = `✅ Scan berhasil! Membuka: ${targetUrl.substring(0, 50)}...`;
+            setTimeout(() => {
+                scanStatus.innerText = "Arahkan kamera ke barcode produk RECOIN atau mitra";
+            }, 3000);
+        }
+    }
+
+    function onScanFailure(error) {}
+
+    async function startScanner() {
+        if (html5QrCode) {
+            try { await html5QrCode.stop(); } catch(e) {}
+        }
+        html5QrCode = new Html5Qrcode("reader");
+        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+        try {
+            await html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess, onScanFailure);
+            if (scanStatus) scanStatus.innerText = "✅ Kamera aktif. Scan barcode apapun akan membuka link di tab baru.";
+        } catch (err) {
+            if (scanStatus) scanStatus.innerText = "❌ Gagal mengakses kamera. Pastikan izin kamera diberikan.";
+        }
+    }
+
+    function closeScanner() {
+        if (html5QrCode) {
+            html5QrCode.stop().then(() => modal.style.display = 'none').catch(() => modal.style.display = 'none');
+        } else { if (modal) modal.style.display = 'none'; }
+    }
+
+    if (openBtns.length > 0) {
+        openBtns.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                if (modal) modal.style.display = 'flex';
+                await startScanner();
+            });
+        });
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeScanner);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeScanner(); });
+
+    // ========================
+    // ANIMATED COUNTERS
+    // ========================
+    const targets = {
+        heroBotol: 1175, heroTransaksi: 1361, heroKarbon: 58.75,
+        impactBotol: 1175, impactKarbon: 58.75, impactTransaksi: 1361, impactOmset: 739700,
+        totalUser: 15, activeUser: 6, merchantCount: 5
+    };
+    function animateNumber(element, end, isFloat = false, isRupiah = false) {
+        let start = 0, duration = 1500, startTime = null;
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            let current = start + (end - start) * progress;
+            if (isFloat) current = current.toFixed(2);
+            else current = Math.floor(current);
+            if (isRupiah) element.innerText = new Intl.NumberFormat('id-ID').format(current);
+            else element.innerText = current;
+            if (progress < 1) requestAnimationFrame(step);
+            else element.innerText = isFloat ? end.toFixed(2) : (isRupiah ? new Intl.NumberFormat('id-ID').format(end) : end);
+        };
+        requestAnimationFrame(step);
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const id = entry.target.id;
+                if (targets[id] !== undefined) {
+                    if (id === 'impactOmset') animateNumber(entry.target, targets[id], false, true);
+                    else if (id === 'heroKarbon' || id === 'impactKarbon') animateNumber(entry.target, targets[id], true);
+                    else animateNumber(entry.target, targets[id], false);
+                }
+            }
+        });
+    }, { threshold: 0.3 });
+    const elementsToObserve = ['heroBotol','heroTransaksi','heroKarbon','impactBotol','impactKarbon','impactTransaksi','impactOmset','totalUser','activeUser','merchantCount'];
+    elementsToObserve.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+    window.addEventListener('load', () => {
+        elementsToObserve.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && !el.classList.contains('counted') && el.getBoundingClientRect().top < window.innerHeight + 200) {
+                el.classList.add('counted');
+                if (targets[id] !== undefined) {
+                    if (id === 'impactOmset') animateNumber(el, targets[id], false, true);
+                    else if (id === 'heroKarbon' || id === 'impactKarbon') animateNumber(el, targets[id], true);
+                    else animateNumber(el, targets[id], false);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
