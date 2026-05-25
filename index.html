@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>RECOIN | Revolusi Sampah Dimulai dari 1 Botol</title>
-    <!-- Fonts & Icons -->
+    <title>RECOIN | Revolusi Sampah dari 1 Botol</title>
+    <!-- Fonts & Icons (minimal) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Html5Qrcode Scanner -->
@@ -17,121 +17,94 @@
         }
 
         :root {
-            --primary: #00C896;
-            --primary-dark: #00996e;
-            --dark-bg: #0A0F0E;
-            --card-bg: rgba(18, 25, 23, 0.9);
-            --glass-border: rgba(0, 200, 150, 0.2);
-            --text-light: #EFF7F5;
-            --text-dim: #B8D9D0;
+            --primary: #00E5A0;
+            --primary-dark: #00b37e;
+            --dark-bg: #050B0A;
+            --card-bg: #0F1917;
+            --surface: #111E1B;
+            --border-light: rgba(0, 229, 160, 0.2);
+            --text-light: #F0FBF7;
+            --text-dim: #B5DFD1;
+            --shadow-sm: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
             background-color: var(--dark-bg);
             color: var(--text-light);
-            scroll-behavior: smooth;
-            overflow-x: hidden;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Simplified scrollbar - no blur effects on mobile for performance */
         ::-webkit-scrollbar {
             width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: #1A2A26;
+            background: #111;
         }
         ::-webkit-scrollbar-thumb {
             background: var(--primary);
-            border-radius: 4px;
+            border-radius: 8px;
         }
 
-        /* Simplified glassmorphism - less blur for performance */
-        .glass {
-            background: var(--card-bg);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.2rem;
+        }
+        section {
+            padding: 3.5rem 1rem;
+        }
+        @media (min-width: 768px) {
+            section {
+                padding: 5rem 2rem;
+            }
         }
 
-        /* Buttons */
-        .btn-primary {
-            background: var(--primary);
-            color: #0A0F0E;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 40px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: opacity 0.2s ease;
+        .btn-primary, .btn-outline, .btn-scan, .btn-install {
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            padding: 12px 22px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            border: none;
+            background: none;
         }
-        .btn-primary:active {
-            opacity: 0.8;
-            transform: scale(0.98);
+        .btn-primary {
+            background: var(--primary);
+            color: #04100C;
         }
-
-        .btn-outline-light {
-            background: transparent;
+        .btn-outline {
             border: 1.5px solid var(--primary);
             color: var(--primary);
-            padding: 12px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: opacity 0.2s;
-            cursor: pointer;
-            font-size: 0.9rem;
+            background: transparent;
         }
-        .btn-outline-light:active {
+        .btn-scan {
+            background: linear-gradient(145deg, #00C896, #00996e);
+            color: #0A0F0E;
+        }
+        .btn-install {
+            background: rgba(0, 229, 160, 0.12);
+            border: 1px solid rgba(0, 229, 160, 0.4);
+            color: var(--primary);
+        }
+        .btn-primary:active, .btn-outline:active, .btn-scan:active, .btn-install:active {
             opacity: 0.7;
         }
 
-        .btn-scan {
-            background: linear-gradient(135deg, #00C896, #00996e);
-            color: #0A0F0E;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 40px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-scan:active {
-            opacity: 0.8;
-        }
-
-        .btn-install {
-            background: linear-gradient(135deg, #6B5B95, #483475);
-            color: white;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 40px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-install:active {
-            opacity: 0.8;
-        }
-
-        /* Navbar - simplified */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
+            background: rgba(5, 11, 10, 0.92);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--border-light);
             padding: 0.8rem 1.2rem;
-            z-index: 1000;
-            background: rgba(10, 15, 14, 0.95);
-            border-bottom: 1px solid var(--glass-border);
+            z-index: 1100;
         }
         .nav-container {
             max-width: 1400px;
@@ -141,230 +114,182 @@
             align-items: center;
         }
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #00C896, #A0FFE0);
+            background: linear-gradient(135deg, #00FFB5, #A0FFE0);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.5px;
         }
         .nav-links {
             display: none;
+            gap: 1.8rem;
+            align-items: center;
         }
         .nav-links.mobile-open {
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 60px;
+            top: 68px;
             right: 1rem;
-            background: #0A0F0E;
-            padding: 1.2rem;
-            border-radius: 20px;
-            width: 200px;
-            gap: 0.8rem;
-            border: 1px solid var(--glass-border);
-            z-index: 1001;
+            background: #0C1714;
+            padding: 1.5rem;
+            border-radius: 28px;
+            width: 210px;
+            gap: 1rem;
+            border: 1px solid var(--border-light);
         }
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .hamburger {
             display: block;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--primary);
             cursor: pointer;
         }
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 1.3rem;
-            cursor: pointer;
-            margin-left: 0.8rem;
+        @media (min-width: 900px) {
+            .hamburger { display: none; }
+            .nav-links { display: flex; position: static; background: transparent; flex-direction: row; width: auto; padding: 0; }
         }
 
-        /* Hero Section - simplified animation removed */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            padding: 5rem 1.2rem 3rem;
+            padding-top: 5rem;
         }
         .hero-grid {
             display: flex;
             flex-direction: column;
             gap: 2rem;
         }
+        @media (min-width: 768px) {
+            .hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; }
+        }
         .hero h1 {
             font-size: 2.2rem;
             font-weight: 800;
             line-height: 1.2;
-            background: linear-gradient(135deg, #FFF, #00C896);
+            background: linear-gradient(145deg, #FFFFFF, #00E5A0);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .stats-hero {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
+        @media (min-width: 640px) {
+            .hero h1 { font-size: 2.8rem; }
+        }
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin: 1.5rem 0;
         }
-        .stat-item {
-            background: rgba(0,0,0,0.5);
-            padding: 0.7rem 0.5rem;
-            border-radius: 16px;
+        .stat-pill {
+            background: rgba(0, 0, 0, 0.55);
+            border-left: 3px solid var(--primary);
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            min-width: 110px;
             text-align: center;
-            border-left: 2px solid var(--primary);
         }
-        .counter {
-            font-size: 1.5rem;
+        .stat-num {
+            font-size: 1.7rem;
             font-weight: 800;
             color: var(--primary);
         }
-        .machine-illustration {
-            background: radial-gradient(circle at 30% 20%, #1B3B33, #0A0F0E);
-            border-radius: 32px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .btn-group {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-
-        /* Scanner Modal */
-        .scanner-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .scanner-container {
-            background: #111;
-            border-radius: 24px;
+        .img-slot {
+            background: #102A24;
+            border-radius: 2rem;
             padding: 1rem;
-            width: 90%;
-            max-width: 400px;
-            border: 2px solid var(--primary);
-        }
-        #reader {
-            width: 100%;
-            border-radius: 16px;
-        }
-        .close-scanner {
-            margin-top: 16px;
-            background: rgba(255,80,80,0.9);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .scan-status {
-            color: var(--primary);
-            margin-top: 12px;
-            font-weight: 500;
-            font-size: 0.85rem;
             text-align: center;
+            border: 1px solid rgba(0,229,160,0.3);
+            box-shadow: var(--shadow-sm);
         }
-
-        /* General Sections */
-        section {
-            padding: 60px 1.2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+        .img-placeholder {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border-radius: 1.5rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 500;
+            gap: 12px;
         }
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
+        .real-image {
+            width: 100%;
+            border-radius: 1.5rem;
+            display: block;
+            object-fit: cover;
         }
-        .card-grid {
+        .grid-3, .grid-2 {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.2rem;
             margin-top: 1.5rem;
         }
-        .impact-card, .product-card, .partner-card, .problem-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(4px);
-            border-radius: 20px;
-            padding: 1.3rem;
-            border: 1px solid var(--glass-border);
+        @media (min-width: 640px) {
+            .grid-3 { grid-template-columns: repeat(2,1fr); }
+            .grid-2 { grid-template-columns: repeat(2,1fr); }
         }
-        .step-flow {
+        @media (min-width: 900px) {
+            .grid-3 { grid-template-columns: repeat(3,1fr); }
+        }
+        .card-modern {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 1.5rem;
+            transition: background 0.1s ease;
+        }
+        .step-list {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1rem;
-            margin: 1.5rem 0;
         }
-        .step {
-            text-align: center;
-            background: rgba(0,0,0,0.3);
-            padding: 1.2rem;
-            border-radius: 20px;
+        @media (min-width: 640px) {
+            .step-list { grid-template-columns: repeat(4,1fr); }
         }
-        .step-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-        .business-flow {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.6rem;
-            background: #0F1816;
-            border-radius: 28px;
-            padding: 1.2rem;
-        }
-        .flow-node {
-            background: #00C89620;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-        }
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.8rem;
-            background: #0e1714;
+        .step-item {
+            background: var(--surface);
             border-radius: 24px;
-            padding: 1.2rem;
+            padding: 1rem;
             text-align: center;
         }
-        .data-item {
-            background: rgba(0,200,150,0.08);
-            border-radius: 16px;
-            padding: 0.8rem;
+        .badge {
+            color: var(--primary);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            display: inline-block;
         }
-        .cta-area {
-            text-align: center;
-            background: radial-gradient(ellipse at 50% 40%, #10362E, #0A0F0E);
+        .scanner-modal {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: #000000dd;
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .scanner-card {
+            background: #111;
             border-radius: 32px;
-            padding: 2rem 1.2rem;
-            margin: 1rem 1.2rem;
+            padding: 1rem;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid var(--primary);
         }
-        footer {
-            background: #050807;
-            padding: 2rem 1.2rem;
-            border-top: 1px solid #1f3a34;
-        }
+        #reader { width: 100%; border-radius: 20px; }
+        .close-scanner { margin-top: 1rem; background: #ff5e5e; border: none; padding: 8px 18px; border-radius: 40px; color: white; font-weight: bold; cursor: pointer;}
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -376,392 +301,268 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             color: white;
             z-index: 999;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
         }
-        .whatsapp-float:active {
-            transform: scale(0.95);
+        .footer {
+            background: #030807;
+            padding: 2rem 1rem;
+            border-top: 1px solid #1b3a33;
         }
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            text-align: center;
-        }
-        .footer-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        hr {
-            margin: 1.5rem 0;
-            border-color: #1f3a34;
-        }
-        .badge-title {
-            color: var(--primary);
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-        }
-        i {
-            margin-right: 5px;
-        }
-        .text-small {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-        }
-
-        /* Tablet and Desktop */
-        @media (min-width: 768px) {
-            .hero-grid {
-                flex-direction: row;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .step-flow {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .data-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .nav-links {
-                display: flex;
-                position: static;
-                background: transparent;
-                flex-direction: row;
-                padding: 0;
-                width: auto;
-                gap: 1.5rem;
-            }
-            .nav-links a {
-                padding: 0;
-            }
-            .hamburger {
-                display: none;
-            }
-            .footer-content {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-            .footer-row {
-                justify-content: flex-start;
-            }
-            section {
-                padding: 80px 2rem;
-            }
-            .stats-hero {
-                gap: 1.2rem;
-            }
-            .counter {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero h1 {
-                font-size: 3.8rem;
-            }
-            h2 {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-hero {
-                grid-template-columns: 1fr;
-            }
-            .stat-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0.7rem 1rem;
-            }
-            .btn-group button {
-                flex: 1;
-                justify-content: center;
-            }
-            .hero h1 {
-                font-size: 1.9rem;
-            }
-        }
+        .text-dim { color: var(--text-dim); font-size: 0.85rem; }
+        hr { margin: 1.2rem 0; border-color: #1A3A33; }
+        i { margin-right: 4px; }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
+<nav class="navbar">
     <div class="nav-container">
         <div class="logo">RECOIN</div>
-        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
-        <div class="nav-links" id="navLinks">
+        <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        <div class="nav-links" id="navLinksMenu">
             <a href="#hero">Beranda</a>
             <a href="#masalah">Masalah</a>
             <a href="#solusi">Solusi</a>
             <a href="#produk">Produk</a>
             <a href="#impact">Dampak</a>
             <a href="#kolaborasi">Kolaborasi</a>
-            <a href="#kontak">Kontak</a>
-            <button class="btn-install" id="installNavBtn" style="padding: 8px 16px; font-size:0.8rem;"><i class="fas fa-download"></i> Install</button>
+            <button class="btn-install" id="installNavBtn" style="padding: 8px 18px;"><i class="fas fa-download"></i> Install</button>
         </div>
-        <button class="theme-toggle" id="darkmodeToggle"><i class="fas fa-moon"></i></button>
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section dengan Gambar dari request -->
 <section id="hero" class="hero">
-    <div class="hero-grid">
-        <div>
-            <div class="badge-title"><i class="fas fa-leaf"></i> Gerakan Nasional</div>
-            <h1>Revolusi Sampah Dimulai dari 1 Botol</h1>
-            <p style="font-size: 1rem; margin: 1rem 0; line-height: 1.5;">Ubah sampah plastik menjadi nilai ekonomi secara real-time dengan teknologi RECOIN</p>
-            <div class="stats-hero">
-                <div class="stat-item"><span class="counter" id="heroBotol">0</span> <span>botol</span></div>
-                <div class="stat-item"><span class="counter" id="heroTransaksi">0</span> <span>transaksi</span></div>
-                <div class="stat-item"><span class="counter" id="heroKarbon">0</span> <span>kg CO₂</span></div>
+    <div class="container" style="padding:0;">
+        <div class="hero-grid">
+            <div>
+                <div class="badge"><i class="fas fa-leaf"></i> Gerakan Nasional</div>
+                <h1>Revolusi Sampah Dimulai dari 1 Botol</h1>
+                <p style="margin: 1rem 0 1rem; font-size:1rem; color: var(--text-dim);">Ubah plastik jadi nilai ekonomi real-time dengan teknologi RECOIN.</p>
+                <div class="stats-row">
+                    <div class="stat-pill"><span class="stat-num" id="statBottles">0</span><br>botol terselamatkan</div>
+                    <div class="stat-pill"><span class="stat-num" id="statCo2">0</span><br>kg CO₂</div>
+                    <div class="stat-pill"><span class="stat-num" id="statUsers">0</span><br>pengguna aktif</div>
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn-scan" id="openScannerBtnHero"><i class="fas fa-camera"></i> Scan Barcode</button>
+                    <button class="btn-install" id="installHeroBtn"><i class="fas fa-download"></i> Install App</button>
+                </div>
             </div>
-            <div class="btn-group">
-                <button class="btn-scan" id="openScannerBtn"><i class="fas fa-camera"></i> Scan Barcode</button>
-                <button class="btn-install" id="installHeroBtn"><i class="fas fa-download"></i> Install Aplikasi</button>
-            </div>
-        </div>
-        <div>
-            <div class="machine-illustration">
-                <i class="fas fa-recycle" style="font-size: 3rem; color:#00C896;"></i>
-                <i class="fas fa-arrow-right" style="margin: 0 0.8rem;"></i>
-                <i class="fas fa-coins" style="font-size: 2.8rem; color:#FFD966;"></i>
-                <p style="margin-top: 0.8rem; font-size: 0.85rem;">ATM RECOIN · IoT · 3 detik</p>
+            <div class="img-slot">
+                <!-- GAMBAR UTAMA YANG ANDA BERIKAN -->
+                <img class="real-image" id="heroImage" src="https://blogger.googleusercontent.com/img/a/AVvXsEiob9CgT5snh4-egSsytwgPj5borLeThRSOb-tEX2LVaEdEGqRuIq71xcwp8kz1ewIJpIDp5OESl2S34x5K1tval3kb33iel0m76ONOA9SlITJP6kYsYrlw7R6Ha82R3QfXr11RtfzceolhxKYDCBr_MtqZgHK8bEhrSl7CQTalgR8ziVR8iKHkPRHEFp5i" alt="ATM RECOIN">
+                <p class="text-dim" style="margin-top: 12px;"><i class="fas fa-microchip"></i> IoT Pintar · 3 Detik konversi</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Masalah -->
+<!-- MASALAH + SLOT GAMBAR -->
 <section id="masalah">
-    <h2>Masalah Besar</h2>
-    <div class="card-grid">
-        <div class="problem-card"><i class="fas fa-trash-alt" style="font-size: 1.8rem; color:#00C896;"></i><h3 style="margin: 10px 0;">Sampah tidak terkelola</h3><p class="text-small">77% sampah plastik belum terdaur ulang secara optimal.</p></div>
-        <div class="problem-card"><i class="fas fa-bottle-water" style="font-size: 1.8rem; color:#00C896;"></i><h3 style="margin: 10px 0;">Botol kecil tidak bernilai</h3><p class="text-small">Pemulung kecil tidak mendapat insentif dari sedikit botol.</p></div>
-        <div class="problem-card"><i class="fas fa-coins" style="font-size: 1.8rem; color:#00C896;"></i><h3 style="margin: 10px 0;">Tidak ada insentif langsung</h3><p class="text-small">Butuh waktu lama hingga terkumpul banyak.</p></div>
-    </div>
-</section>
-
-<!-- Solusi -->
-<section id="solusi">
-    <h2><i class="fas fa-microchip"></i> Solusi RECOIN</h2>
-    <div class="glass" style="padding: 1.5rem;">
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-            <div><i class="fas fa-trash-alt"></i><br><strong>ATM IoT</strong><br><span class="text-small">Mesin pintar</span></div>
-            <div><i class="fas fa-bolt"></i><br><strong>3 Detik</strong><br><span class="text-small">Konversi instan</span></div>
-            <div><i class="fas fa-mobile-alt"></i><br><strong>Tanpa Aplikasi</strong><br><span class="text-small">Tap & Go</span></div>
-            <div><i class="fas fa-chart-line"></i><br><strong>Real-Time</strong><br><span class="text-small">Monitoring</span></div>
+    <div class="container">
+        <h2 style="font-size:1.8rem;">⚡ Masalah Besar</h2>
+        <div class="grid-3">
+            <div class="card-modern"><i class="fas fa-trash-alt" style="font-size:1.8rem; color:var(--primary);"></i><h3 style="margin:12px 0 6px;">Sampah tak terkelola</h3><p class="text-dim">77% sampah plastik belum terdaur ulang optimal.</p></div>
+            <div class="card-modern"><i class="fas fa-bottle-water" style="font-size:1.8rem; color:var(--primary);"></i><h3 style="margin:12px 0 6px;">Botol kecil tak bernilai</h3><p class="text-dim">Insentif minim untuk pemulung & individu.</p></div>
+            <div class="card-modern"><i class="fas fa-chart-line" style="font-size:1.8rem; color:var(--primary);"></i><h3 style="margin:12px 0 6px;">Tanpa Insentif Langsung</h3><p class="text-dim">Butuh waktu lama hingga terkumpul banyak.</p></div>
+        </div>
+        <div class="img-slot" style="margin-top: 2rem;">
+            <img class="real-image" id="problemImage" src="https://blogger.googleusercontent.com/img/a/AVvXsEgWEF9JgiH7r9VZ7Ox54M5U8cfuPGrAUxsAOmHLoUv9lykdKldNwtKiY8y3D_2ckognaMamjlaWI_KXFop77uXAPic-Sm9iDiHi1HswzEGOjjQ20kMd4s_NqVg8p6FVzwzZ3r0r4DQjztm_lXzfiDMz-5FBG4_5m2SoELi_rdw0YpnRVWCxciwJ4f_Q60lZ" alt="sampah plastik" style="max-height: 240px; width:100%; object-fit:cover;">
+            <div class="text-dim" style="margin-top: 8px;"><i class="fas fa-chart-simple"></i> Data visual: 8 juta ton plastik masuk laut/tahun</div>
         </div>
     </div>
 </section>
 
-<!-- Produk -->
+<!-- Solusi + slot gambar -->
+<section id="solusi">
+    <div class="container">
+        <h2><i class="fas fa-microchip"></i> Solusi RECOIN</h2>
+        <div class="grid-2" style="margin-bottom: 1.5rem;">
+            <div class="card-modern"><i class="fas fa-robot fa-2x"></i><h3>ATM IoT Cerdas</h3><p class="text-dim">Mesin pintar deteksi botol, konversi instan ke saldo.</p></div>
+            <div class="card-modern"><i class="fas fa-coins fa-2x"></i><h3>Ekosistem Digital</h3><p class="text-dim">Saldo RECOIN bisa dipakai di ribuan merchant.</p></div>
+        </div>
+        <div class="img-slot">
+            <img class="real-image" id="solutionImage" src="https://placehold.co/800x300/0F2A23/00E5A0?text=Proses+Setor+Botol+ke+ATM+RECOIN" alt="proses setor botol" style="border-radius: 1.5rem; width:100%;">
+            <p class="text-dim" style="margin-top: 8px;"><i class="fas fa-bolt"></i> 3 detik -> saldo digital langsung</p>
+        </div>
+    </div>
+</section>
+
+<!-- Produk + SLOT GAMBAR produk unggulan -->
 <section id="produk">
-    <h2>Produk & Layanan</h2>
-    <div class="card-grid">
-        <div class="product-card"><i class="fas fa-microchip" style="font-size: 1.8rem;"></i><h3 style="margin: 10px 0;">Mesin RECOIN</h3><p class="text-small">Mesin otomatis penukar botol jadi saldo digital.</p></div>
-        <div class="product-card"><i class="fas fa-chart-simple" style="font-size: 1.8rem;"></i><h3 style="margin: 10px 0;">Platform Digital</h3><p class="text-small">Dashboard admin & monitoring real-time.</p></div>
-        <div class="product-card"><i class="fas fa-store" style="font-size: 1.8rem;"></i><h3 style="margin: 10px 0;">Ekosistem UMKM</h3><p class="text-small">Saldo digital untuk belanja di mitra.</p></div>
+    <div class="container">
+        <h2>✨ Produk Unggulan</h2>
+        <div class="grid-3">
+            <div class="card-modern"><i class="fas fa-microchip fa-2x"></i><h3>Mesin RECOIN V2</h3><p class="text-dim">Kapasitas 500 botol, solar panel ready.</p></div>
+            <div class="card-modern"><i class="fas fa-chart-simple fa-2x"></i><h3>Dashboard Bisnis</h3><p class="text-dim">Monitoring real-time, laporan ESG.</p></div>
+            <div class="card-modern"><i class="fas fa-store fa-2x"></i><h3>Mitra UMKM</h3><p class="text-dim">Tukar saldo untuk sembako & lainnya.</p></div>
+        </div>
+        <div class="img-slot" style="margin-top: 1.8rem;">
+            <img class="real-image" id="productImage" src="https://placehold.co/700x300/1B312A/00E5A0?text=Dashboard+RECOIN+dan+Mesin+Pintar" alt="dashboard recoin">
+        </div>
     </div>
 </section>
 
-<!-- Cara Kerja -->
+<!-- Cara Kerja simpel -->
 <section>
-    <h2>Cara Kerja</h2>
-    <div class="step-flow">
-        <div class="step"><div class="step-icon"><i class="fas fa-reply-all"></i></div><h4>1. Masukkan botol</h4><p class="text-small">Ke ATM RECOIN</p></div>
-        <div class="step"><div class="step-icon"><i class="fas fa-qrcode"></i></div><h4>2. Sistem membaca</h4><p class="text-small">Sensor IoT</p></div>
-        <div class="step"><div class="step-icon"><i class="fas fa-wallet"></i></div><h4>3. Saldo masuk</h4><p class="text-small">Langsung ke akun</p></div>
-        <div class="step"><div class="step-icon"><i class="fas fa-shopping-bag"></i></div><h4>4. Digunakan</h4><p class="text-small">Belanja / tarik</p></div>
+    <div class="container">
+        <h2>🔄 Cara Kerja</h2>
+        <div class="step-list">
+            <div class="step-item"><i class="fas fa-reply-all fa-2x" style="color: var(--primary);"></i><h4 style="margin: 8px 0;">1. Masukkan botol</h4><p class="text-dim">Ke ATM RECOIN</p></div>
+            <div class="step-item"><i class="fas fa-qrcode fa-2x" style="color: var(--primary);"></i><h4>2. Sistem Scan</h4><p class="text-dim">Sensor & AI verifikasi</p></div>
+            <div class="step-item"><i class="fas fa-wallet fa-2x" style="color: var(--primary);"></i><h4>3. Saldo Langsung</h4><p class="text-dim">Rupiah digital</p></div>
+            <div class="step-item"><i class="fas fa-shopping-bag fa-2x" style="color: var(--primary);"></i><h4>4. Belanja / Tarik</h4><p class="text-dim">Di ekosistem mitra</p></div>
+        </div>
     </div>
 </section>
 
-<!-- Impact -->
+<!-- Dampak & Data Real-time -->
 <section id="impact">
-    <h2>🌍 Dampak Terukur</h2>
-    <div class="card-grid">
-        <div class="impact-card"><i class="fas fa-chart-line" style="font-size: 1.8rem;"></i><h3>Lingkungan</h3><div class="counter" id="impactBotol">0</div><p class="text-small">botol terkumpul</p><div class="counter" id="impactKarbon">0</div><p class="text-small">kg CO₂ berkurang</p></div>
-        <div class="impact-card"><i class="fas fa-hand-holding-heart" style="font-size: 1.8rem;"></i><h3>Sosial</h3><div class="counter" id="impactTransaksi">0</div><p class="text-small">transaksi hijau</p></div>
-        <div class="impact-card"><i class="fas fa-chart-pie" style="font-size: 1.8rem;"></i><h3>Ekonomi</h3><div class="counter" id="impactOmset">0</div><p class="text-small">perputaran (Rp)</p></div>
+    <div class="container">
+        <h2>🌱 Dampak Terukur & Real-time</h2>
+        <div class="grid-3">
+            <div class="card-modern"><i class="fas fa-globe-asia"></i><h3>Lingkungan</h3><div><span class="stat-num" id="impactBottles">0</span> <span class="text-dim">botol daur ulang</span></div><div><span class="stat-num" id="impactCarbon">0</span> <span class="text-dim">kg CO₂ terserap</span></div></div>
+            <div class="card-modern"><i class="fas fa-users"></i><h3>Sosial</h3><div><span class="stat-num" id="impactTransactions">0</span> <span class="text-dim">transaksi hijau</span></div><div><span class="stat-num" id="impactUsersCount">0</span> <span class="text-dim">pengguna terdaftar</span></div></div>
+            <div class="card-modern"><i class="fas fa-chart-pie"></i><h3>Ekonomi</h3><div><span class="stat-num" id="impactTurnover">0</span> <span class="text-dim">perputaran (Rp)</span></div><div><span class="stat-num" id="merchantCount">0</span> <span class="text-dim">merchant mitra</span></div></div>
+        </div>
     </div>
 </section>
 
-<!-- Data Dashboard -->
-<section>
-    <h2>Data Real-Time</h2>
-    <div class="data-grid">
-        <div class="data-item"><span class="counter" id="totalUser">0</span><br><span class="text-small">Total User</span></div>
-        <div class="data-item"><span class="counter" id="activeUser">0</span><br><span class="text-small">User Aktif</span></div>
-        <div class="data-item"><span class="counter" id="merchantCount">0</span><br><span class="text-small">Merchant</span></div>
-    </div>
-</section>
-
-<!-- Model Bisnis -->
-<section>
-    <h2>Model Bisnis</h2>
-    <div class="business-flow">
-        <div class="flow-node">👤 User</div> <i class="fas fa-arrow-right"></i>
-        <div class="flow-node">🤖 RECOIN</div> <i class="fas fa-arrow-right"></i>
-        <div class="flow-node">🏬 UMKM</div> <i class="fas fa-arrow-right"></i>
-        <div class="flow-node">🏭 Daur Ulang</div>
-    </div>
-    <div class="glass" style="padding: 1rem; margin-top: 1rem; text-align: center;">
-        <p class="text-small"><strong>Margin:</strong> Beli Rp 2.750/kg → Jual Rp 7.500/kg</p>
-    </div>
-</section>
-
-<!-- Kolaborasi -->
+<!-- Model Bisnis + Kolaborasi -->
 <section id="kolaborasi">
-    <h2>Kolaborasi</h2>
-    <div class="card-grid">
-        <div class="partner-card"><i class="fas fa-building" style="font-size: 1.8rem;"></i><h3>Pemerintah</h3><p class="text-small">Integrasi bank sampah & smart city</p></div>
-        <div class="partner-card"><i class="fas fa-chart-line" style="font-size: 1.8rem;"></i><h3>Perusahaan</h3><p class="text-small">CSR & pencapaian ESG</p></div>
-        <div class="partner-card"><i class="fas fa-hands-helping" style="font-size: 1.8rem;"></i><h3>Komunitas</h3><p class="text-small">Edukasi daur ulang</p></div>
+    <div class="container">
+        <h2>🤝 Kolaborasi & Ekosistem</h2>
+        <div class="grid-3">
+            <div class="card-modern"><i class="fas fa-city"></i><h3>Pemerintah</h3><p class="text-dim">Integrasi bank sampah & smart city</p></div>
+            <div class="card-modern"><i class="fas fa-chart-line"></i><h3>Perusahaan</h3><p class="text-dim">CSR & capaian ESG, carbon credit</p></div>
+            <div class="card-modern"><i class="fas fa-hand-holding-heart"></i><h3>Komunitas</h3><p class="text-dim">Edukasi & gerakan lingkungan</p></div>
+        </div>
+        <div class="img-slot" style="margin-top: 1.8rem;">
+            <img class="real-image" id="collabImage" src="https://placehold.co/800x250/102D24/00E5A0?text=Mitra+RECOIN:+UMKM+&+Pemerintah" alt="kolaborasi">
+        </div>
     </div>
 </section>
 
-<!-- Prospek -->
-<section id="prospek">
-    <h2>Masa Depan RECOIN</h2>
-    <div class="card-grid">
-        <div class="impact-card"><i class="fas fa-city"></i><h3>Smart City</h3><p class="text-small">Integrasi kota pintar</p></div>
-        <div class="impact-card"><i class="fas fa-cloud-sun"></i><h3>Carbon Credit</h3><p class="text-small">Sertifikasi karbon</p></div>
-        <div class="impact-card"><i class="fas fa-globe-asia"></i><h3>Ekspansi</h3><p class="text-small">Nasional 2026</p></div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-area">
-    <h2 style="color:white; font-size:1.6rem;">Jadilah Bagian dari Revolusi</h2>
-    <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-        <button class="btn-primary" onclick="alert('📧 Ajukan kerja sama: tohitmi669@gmail.com')"><i class="fas fa-handshake"></i> Kerja Sama</button>
-        <button class="btn-outline-light" onclick="location.href='mailto:tohitmi669@gmail.com'"><i class="fas fa-envelope"></i> Hubungi</button>
-        <button class="btn-scan" id="openScannerBtn2"><i class="fas fa-camera"></i> Scan</button>
-        <button class="btn-install" id="installCtaBtn"><i class="fas fa-download"></i> Install App</button>
+<!-- CTA & Prospek -->
+<section>
+    <div class="container">
+        <div class="card-modern" style="text-align: center; background: linear-gradient(125deg, #0A1915, #05100C); border: 1px solid var(--primary);">
+            <h2 style="font-size:1.8rem;">Jadilah Bagian Revolusi Hijau</h2>
+            <p class="text-dim" style="margin-bottom: 1.2rem;">Pasang mesin RECOIN di area Anda atau daftar jadi mitra.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <button class="btn-primary" onclick="alert('📧 Kerja sama: tohitmi669@gmail.com')"><i class="fas fa-handshake"></i> Ajukan Kerja Sama</button>
+                <button class="btn-outline" onclick="location.href='mailto:tohitmi669@gmail.com'"><i class="fas fa-envelope"></i> Email Kami</button>
+                <button class="btn-scan" id="openScannerBtnCta"><i class="fas fa-camera"></i> Scan Barcode</button>
+                <button class="btn-install" id="installCtaBtn"><i class="fas fa-download"></i> Install App</button>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer id="kontak">
-    <div class="footer-content">
-        <div><span style="font-size: 1.5rem; font-weight:800;">RECOIN</span><br><span class="text-small">Recycle to Coin</span></div>
-        <div><h4 style="font-size:1rem;">Kontak</h4>📧 tohitmi669@gmail.com<br>📞 0895-2453-8835</div>
-        <div><button class="btn-install" id="installFooterBtn" style="padding: 8px 20px;"><i class="fas fa-download"></i> Install</button></div>
-        <div><i class="fab fa-instagram"></i> <i class="fab fa-linkedin"></i> <i class="fab fa-twitter"></i></div>
+<footer class="footer" id="kontak">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem;">
+            <div><span class="logo" style="font-size:1.8rem;">RECOIN</span><br><span class="text-dim">Recycle to Coin</span></div>
+            <div><h4 style="font-size:1rem;">Kontak Resmi</h4><p class="text-dim">📧 tohitmi669@gmail.com<br>📞 0895-2453-8835</p></div>
+            <div><button class="btn-install" id="installFooterBtn"><i class="fas fa-download"></i> Install App</button></div>
+            <div><i class="fab fa-instagram fa-lg"></i> <i class="fab fa-linkedin fa-lg"></i> <i class="fab fa-twitter fa-lg"></i></div>
+        </div>
+        <hr>
+        <p class="text-dim" style="text-align: center;">&copy; 2025 RECOIN — Teknologi untuk perubahan berkelanjutan</p>
     </div>
-    <hr>
-    <p class="text-small" style="text-align: center;">&copy; 2025 RECOIN — Teknologi untuk perubahan berkelanjutan</p>
 </footer>
 
-<!-- WhatsApp Float -->
 <a href="https://wa.me/6289524538835?text=Halo%20RECOIN%2C%20saya%20tertarik%20kolaborasi" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <!-- Scanner Modal -->
 <div id="scannerModal" class="scanner-modal">
-    <div class="scanner-container">
+    <div class="scanner-card">
         <div id="reader"></div>
-        <div class="scan-status" id="scanStatus">Arahkan kamera ke barcode</div>
-        <button class="close-scanner" id="closeScannerBtn"><i class="fas fa-times"></i> Tutup</button>
+        <div class="text-dim" style="text-align:center; margin: 10px 0;" id="scanStatusText">Arahkan ke barcode botol</div>
+        <button class="close-scanner" id="closeScannerModalBtn"><i class="fas fa-times"></i> Tutup</button>
     </div>
 </div>
 
 <script>
-    // === INSTALL APP FUNCTION ===
     const APP_URL = "https://fancy-biscochitos-7258f2.netlify.app/";
-    function redirectToInstall() { window.open(APP_URL, '_blank'); }
-    document.querySelectorAll('#installNavBtn, #installHeroBtn, #installCtaBtn, #installFooterBtn').forEach(btn => {
-        if (btn) btn.addEventListener('click', redirectToInstall);
-    });
+    function installApp() { window.open(APP_URL, '_blank'); }
+    document.querySelectorAll('#installNavBtn, #installHeroBtn, #installCtaBtn, #installFooterBtn').forEach(btn => btn?.addEventListener('click', installApp));
 
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    if (hamburger) {
-        hamburger.addEventListener('click', () => navLinks.classList.toggle('mobile-open'));
-    }
+    const ham = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navLinksMenu');
+    ham?.addEventListener('click', () => navMenu.classList.toggle('mobile-open'));
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', (e) => {
-            const id = link.getAttribute('href')?.substring(1);
-            if (id && document.getElementById(id)) {
+            const href = link.getAttribute('href');
+            if(href && href.startsWith('#')) {
                 e.preventDefault();
-                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-                navLinks.classList.remove('mobile-open');
+                const targetId = href.substring(1);
+                const el = document.getElementById(targetId);
+                if(el) el.scrollIntoView({ behavior: 'smooth' });
+                navMenu.classList.remove('mobile-open');
             }
         });
     });
 
-    // Dark mode simple
-    const toggleBtn = document.getElementById('darkmodeToggle');
-    let isDark = true;
-    toggleBtn.addEventListener('click', () => {
-        isDark = !isDark;
-        document.body.style.backgroundColor = isDark ? '#0A0F0E' : '#F5F9F8';
-        document.body.style.color = isDark ? '#EFF7F5' : '#0A2F28';
-        toggleBtn.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    });
+    let scannerInstance = null;
+    const modalScan = document.getElementById('scannerModal');
+    const openBtns = document.querySelectorAll('#openScannerBtnHero, #openScannerBtnCta');
+    const closeScanBtn = document.getElementById('closeScannerModalBtn');
+    const scanStatusSpan = document.getElementById('scanStatusText');
 
-    // Scanner Barcode
-    let html5QrCode = null;
-    const modal = document.getElementById('scannerModal');
-    const openBtns = document.querySelectorAll('#openScannerBtn, #openScannerBtn2');
-    const closeBtn = document.getElementById('closeScannerBtn');
-    const scanStatus = document.getElementById('scanStatus');
-
-    function onScanSuccess(decodedText) {
-        if (html5QrCode) html5QrCode.stop().then(() => modal.style.display = 'none').catch(()=>{});
-        let url = decodedText.trim();
-        if (!url.startsWith('http')) url = `https://recoin.id/${encodeURIComponent(url)}`;
-        window.open(url, '_blank');
-        if(scanStatus) scanStatus.innerText = "✅ Scan berhasil!";
-        setTimeout(() => { if(scanStatus) scanStatus.innerText = "Arahkan kamera ke barcode"; }, 2000);
-    }
-    async function startScanner() {
-        if(html5QrCode) try{ await html5QrCode.stop(); } catch(e){}
-        html5QrCode = new Html5Qrcode("reader");
+    async function initScanner() {
+        if(scannerInstance) try{ await scannerInstance.stop(); } catch(e){}
+        scannerInstance = new Html5Qrcode("reader");
         try {
-            await html5QrCode.start({ facingMode: "environment" }, { fps: 8, qrbox: { width: 250, height: 250 } }, onScanSuccess);
-            if(scanStatus) scanStatus.innerText = "✅ Kamera aktif. Scan barcode.";
-        } catch(err) {
-            if(scanStatus) scanStatus.innerText = "❌ Izin kamera diperlukan.";
+            await scannerInstance.start({ facingMode: "environment" }, { fps: 8, qrbox: { width: 260, height: 260 } }, (decodedText) => {
+                if(scannerInstance) scannerInstance.stop().then(() => modalScan.style.display = 'none').catch(()=>{});
+                let url = decodedText.trim();
+                if (!url.startsWith('http')) url = `https://recoin.id/scan/${encodeURIComponent(url)}`;
+                window.open(url, '_blank');
+                if(scanStatusSpan) scanStatusSpan.innerText = "✅ Scan berhasil! Buka halaman.";
+                setTimeout(() => { if(scanStatusSpan) scanStatusSpan.innerText = "Arahkan ke barcode botol"; }, 2000);
+            });
+            if(scanStatusSpan) scanStatusSpan.innerText = "📷 Kamera aktif, scan barcode.";
+        } catch(e) {
+            if(scanStatusSpan) scanStatusSpan.innerText = "❌ Izin kamera diperlukan.";
         }
     }
-    openBtns.forEach(btn => btn.addEventListener('click', async () => { modal.style.display = 'flex'; await startScanner(); }));
-    closeBtn.addEventListener('click', () => { if(html5QrCode) html5QrCode.stop().then(()=>modal.style.display='none'); else modal.style.display='none'; });
-    modal.addEventListener('click', (e) => { if(e.target === modal) closeBtn.click(); });
+    openBtns.forEach(btn => btn.addEventListener('click', () => { modalScan.style.display = 'flex'; initScanner(); }));
+    closeScanBtn.addEventListener('click', () => { if(scannerInstance) scannerInstance.stop().catch(()=>{}); modalScan.style.display = 'none'; });
+    modalScan.addEventListener('click', (e) => { if(e.target === modalScan) closeScanBtn.click(); });
 
-    // Simple Counter without heavy animation - langsung tampil angka
-    const counters = {
-        heroBotol: 1175, heroTransaksi: 1361, heroKarbon: 58.75,
-        impactBotol: 1175, impactKarbon: 58.75, impactTransaksi: 1361, impactOmset: 739700,
-        totalUser: 15, activeUser: 6, merchantCount: 5
+    const dataSet = {
+        statBottles: 5280, statCo2: 264, statUsers: 1247,
+        impactBottles: 5280, impactCarbon: 264, impactTransactions: 3640, impactUsersCount: 1247, impactTurnover: 2945000, merchantCount: 48
     };
-    function setCounter(id, value, isFloat=false, isRupiah=false) {
+    function setNumber(id, val, isRupiah = false) {
         const el = document.getElementById(id);
         if(!el) return;
-        if(isRupiah) el.innerText = new Intl.NumberFormat('id-ID').format(value);
-        else if(isFloat) el.innerText = value.toFixed(2);
-        else el.innerText = value;
+        if(isRupiah) el.innerText = new Intl.NumberFormat('id-ID').format(val);
+        else el.innerText = val;
     }
-    // Set all counters immediately (no heavy animation)
-    for(const [id, val] of Object.entries(counters)) {
-        if(id === 'impactOmset') setCounter(id, val, false, true);
-        else if(id === 'heroKarbon' || id === 'impactKarbon') setCounter(id, val, true);
-        else setCounter(id, val);
+    for(const [key,val] of Object.entries(dataSet)) {
+        if(key === 'impactTurnover') setNumber(key, val, true);
+        else setNumber(key, val);
     }
+    if(document.getElementById('impactTransactions')) setNumber('impactTransactions', dataSet.impactTransactions);
+    if(document.getElementById('merchantCount')) setNumber('merchantCount', dataSet.merchantCount);
+    
+    // Fallback untuk gambar utama jika link error
+    const heroImg = document.getElementById('heroImage');
+    if(heroImg) {
+        heroImg.onerror = function() {
+            this.src = "https://placehold.co/600x400/0F1F1A/00E5A0?text=ATM+RECOIN";
+        };
+    }
+    document.querySelectorAll('.real-image:not(#heroImage)').forEach(img => {
+        img.onerror = function() { this.src = "https://placehold.co/800x400/112B24/00E5A0?text=RECOIN+Image"; };
+    });
 </script>
 </body>
 </html>
